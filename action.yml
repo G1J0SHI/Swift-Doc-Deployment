@@ -1,0 +1,23 @@
+name: "Swift Doc Deployment"
+description: "Deploys the Swift documentation to GitHub pages."
+
+branding:
+  icon: "code"
+  color: "blue"
+
+inputs:
+  target:
+    description: "The Swift package target to generate documentation for."
+    required: true
+  branch:
+    description: "The branch where the documentation will be deployed."
+    required: false
+    default: "gh-pages"
+  name:
+    description: "The name for Git commits."
+    required: false
+    default: "${{github.actor}}"
+  email:
+    description: "The email address for Git commits."
+    required: false
+    default: "${{github.actor}}@users.noreply.github.com"
