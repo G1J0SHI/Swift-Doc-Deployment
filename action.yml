@@ -21,3 +21,17 @@ inputs:
     description: "The email address for Git commits."
     required: false
     default: "${{github.actor}}@users.noreply.github.com"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build the Swift doc
+      shell: bash
+      run: |
+        mkdir -p docs
+        swift package --allow-writing-to-directory docs \
+          generate-documentation --target "${{inputs.target}}" \
+          --disable-indexing \
+          --transform-for-static-hosting \
+          --hosting-base-path "${{inputs.target}}" \
+          --output-path docs
