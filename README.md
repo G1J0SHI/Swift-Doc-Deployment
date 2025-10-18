@@ -12,20 +12,37 @@ name: "Swift Doc Deployment"
 on: [push]
 
 jobs:
-  build:
+  deploy:
     runs-on: macos-latest
-
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.cicd.outputs.page-url }}
     steps:
-      - uses: actions/checkout@main
       - uses: g1j0shi/swift-doc-deployment@main
+        id: cicd
 ```
 
 #### Input
 
+| Name   | Description                                         | Required | Default |
+| ------ | --------------------------------------------------- | -------- | ------- |
+| target | The Swift package target to generate documentation. | true     | -       |
+
+#### Output
+
+| Name     | Description                           |
+| -------- | ------------------------------------- |
+| page-url | URL of the deployed GitHub Pages site |
+
+#### Example
+
 ```yml
       ...
       - uses: g1j0shi/swift-doc-deployment@main
+        id: cicd
         with:
-          target: "SwiftPackage" # The Swift package target to generate documentation for.
-          branch: "gh-pages" # The branch where the documentation will be deployed.
+          target: "SwiftPackage"
 ```
