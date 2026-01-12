@@ -4,6 +4,14 @@
 
 ### Deploys the Swift documentation to GitHub pages.
 
+#### Setup
+
+Before using this action, enable GitHub Pages in your repository:
+
+1. Go to your repository **Settings**
+2. Navigate to **Pages** in the left sidebar
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**
+
 #### Usage
 
 ```yml
